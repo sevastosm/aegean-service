@@ -18,6 +18,11 @@ app.use(
     })
 );
 
+
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
+
 app.post('/send', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
 
