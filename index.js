@@ -36,6 +36,6 @@ app.post('/send', (req, res) => {
         .catch((err) => res.json({ success: false, message: err }));
 });
 
-app.listen(5001, () => {
-    console.log(`Server listening at http://localhost:${5001}`);
+app.listen(3000, () => {
+    console.log(`Server listening at http://localhost:${3000}`);
 });
