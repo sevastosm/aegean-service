@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.post('/send', (req, res) => {
-    res.set('Access-Control-Allow-Origin', 'https://aegean-service.vercel.app/');
+    res.set('Access-Control-Allow-Origin', '*');
 
     const { phone, message } = req.body;
 
