@@ -10,7 +10,7 @@ fetch('https://rest.nexmo.com/sms/json', {
     'api_key': 'd97056fa',
     'api_secret': 'aWjeRvyt34lNrber'
   })
-}) .then(resp => console.log("RESP",resp))
+}) .then(async(resp) => console.log("RESP",await resp.json()))
         .catch(err => { console.log('There was an error sending the messages.'); console.error(err); });
 }
 
