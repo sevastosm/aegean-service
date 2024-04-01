@@ -23,6 +23,10 @@ app.get("/", (req, res) => {
   res.send("Express on Vercel");
 });
 
+app.get("/delivery", (req, res) => {
+  res.send("Delivery",res);
+});
+
 app.post('/send', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
 
