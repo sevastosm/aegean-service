@@ -7,7 +7,6 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-import * as functions from "firebase-functions";
 import express from "express";
 import cors from "cors";
 
@@ -99,5 +98,10 @@ app.use((req, res) => {
   res.status(404).json({ error: "Not found" });
 });
 
-// Define your Cloud Function
-exports.api = functions.https.onRequest(app);
+// start the server
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
+
+// Define your Cloud Function//
+//exports.api = functions.https.onRequest(app);
