@@ -1,3 +1,4 @@
+//@ts-ignore
 /**
  * Import function triggers from their respective submodules:
  *
@@ -16,13 +17,15 @@ import { sendSms } from "./lib";
 
 import request from "request";
 import { error } from "firebase-functions/logger";
-
+import { sendAuthenticationCode, sendOrderLink } from "./whatsApp";
 const { json, urlencoded } = express;
 
 const app = express();
 
 app.use(json());
 app.use(cors());
+
+
 
 app.use(
   urlencoded({
@@ -35,11 +38,30 @@ app.get("/", (req: any, res: any) => {
 });
 
 app.get("/delivery", (req: any, res: any) => {
-  res.send("Delivery", res);
+  res.send("Delivery");
 });
 
-app.post("/send", (req: any, res: any) => {
+app.post("/whatsapp", async (req: any, res: any) => {
   res.set("Access-Control-Allow-Origin", "*");
+
+  const { phone, code } = req.body;
+  const data = await sendAuthenticationCode({to: phone, code: code});
+  console.log("data", data);
+  res.send(data);
+});
+
+app.post("/order-link", async (req: any, res: any) => {
+  res.set("Access-Control-Allow-Origin", "*");
+
+  const { phone, link } = req.body;
+  const data = await sendOrderLink({ phone: phone, link: link });
+  console.log("data", data);
+  res.send(data);
+});
+
+app.post("/send", async (req: any, res: any) => {
+  res.set("Access-Control-Allow-Origin", "*");
+
 
   const { phone, message } = req.body;
 
